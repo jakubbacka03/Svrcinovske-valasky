@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/gallery.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <title>Galeria</title>
+</head>
+<body>
+    <div class="container">
+        <div id="header-container"></div>
+    </div>
+
+    <section>
+        <div class="goldlinehor"></div>
+    </section>
+
+    <section class="gallery-section">
+        <h1>Galéria</h1>
+        <div class="gallery-container">
+            <a href="../img/gallery/foto1.webp"><img src="../img/gallery/foto1.webp" alt="Valaska 1"></a>
+            <a href="../img/gallery/foto2.webp"><img src="../img/gallery/foto2.webp" alt="Valaska 2"></a>
+            <a href="../img/gallery/foto3.webp"><img src="../img/gallery/foto3.webp" alt="Valaska 3"></a>
+            <a href="../img/gallery/foto4.webp"><img src="../img/gallery/foto4.webp" alt="Valaska 4"></a>
+            <a href="../img/gallery/foto5.webp"><img src="../img/gallery/foto5.webp" alt="Valaska 5"></a>
+            <a href="../img/gallery/foto6.webp"><img src="../img/gallery/foto6.webp" alt="Valaska 6"></a>
+            <a href="../img/gallery/foto7.webp"><img src="../img/gallery/foto7.webp" alt="Valaska 7"></a>
+            <a href="../img/gallery/foto8.webp"><img src="../img/gallery/foto8.webp" alt="Valaska 8"></a>
+            <a href="../img/gallery/foto9.webp"><img src="../img/gallery/foto9.webp" alt="Valaska 9"></a>
+            <a href="../img/gallery/foto10.webp"><img src="../img/gallery/foto10.webp" alt="Valaska 10"></a>
+            <a href="../img/gallery/foto11.webp"><img src="../img/gallery/foto11.webp" alt="Valaska 11"></a>
+            <a href="../img/gallery/foto12.webp"><img src="../img/gallery/foto12.webp" alt="Valaska 12"></a>
+            <a href="../img/gallery/foto13.webp"><img src="../img/gallery/foto13.webp" alt="Valaska 13"></a>
+            <a href="../img/gallery/foto14.webp"><img src="../img/gallery/foto14.webp" alt="Valaska 14"></a>
+            <a href="../img/gallery/foto15.webp"><img src="../img/gallery/foto15.webp" alt="Valaska 15"></a>
+            <a href="../img/gallery/foto16.webp"><img src="../img/gallery/foto16.webp" alt="Valaska 16"></a>
+        </div>
+    </section>
+
+    <div id="custom-lightbox" class="lightbox-hidden" style="display: none;">
+        <span id="lightbox-close">&times;</span>
+        <div class="lightbox-nav">
+            <button id="prev-btn">&#10094;</button>
+            <button id="next-btn">&#10095;</button>
+        </div>
+        <img id="lightbox-image" src="" alt="Zväčšený obrázok">
+    </div>
+
+
+    <section>
+        <div class="goldlinehor"></div>
+    </section>
+
+    <div class="container">
+        <div id="footer-container"></div>
+    </div>
+</body>
+<script src="../js/frontend/loadHeader.js"></script>
+<script src="../js/frontend/loadFooter.js"></script>
+<script src="../js/frontend/menu.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        await loadHeader();
+        await loadFooter();
+        setupMenuToggle();
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const links = Array.from(document.querySelectorAll(".gallery-container a"));
+      const lightbox = document.getElementById("custom-lightbox");
+      const lightboxImg = document.getElementById("lightbox-image");
+      const closeBtn = document.getElementById("lightbox-close");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
+      let currentIndex = -1;
+
+      function showLightbox(index) {
+        currentIndex = index;
+        lightboxImg.src = links[currentIndex].href;
+        lightbox.classList.remove("lightbox-hidden");
+        lightbox.style.display = "flex"; 
+        }
+
+      function closeLightbox() {
+        lightbox.classList.add("lightbox-hidden");
+        lightbox.style.display = "none"; 
+        lightboxImg.src = ""; 
+        currentIndex = -1;
+      }
+
+      function showNext() {
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex + 1) % links.length;
+        lightboxImg.src = links[currentIndex].href;
+      }
+
+      function showPrev() {
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex - 1 + links.length) % links.length;
+        lightboxImg.src = links[currentIndex].href;
+      }
+
+      links.forEach(function(link, i) {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            showLightbox(i);
+        });
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      nextBtn.addEventListener("click", showNext);
+      prevBtn.addEventListener("click", showPrev);
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
+      });
+    });
+  </script>
+</html>

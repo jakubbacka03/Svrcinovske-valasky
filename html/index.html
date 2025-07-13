@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <title>SvrcinovskeValasky</title>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "ZCqI7SO760m2bSBJm",
+        });
+    })();
+    </script>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div id="header-container"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="goldlinehor"></div>
+    </section>
+
+    <section class="main">
+        <div class="main-content">
+            <h1>Čo robíme</h1>
+            <p>
+                Sme malá rodinná firma, ktorá v rámci voľnočasových aktivít rada vymýšľa a skúša nové veci. K výrobe valašiek nás priviedla láska k folklóru, našim koreňom a histórii.
+
+                Leptané chladné zbrane sú nádhernou ale stále funkčnou výbavou a doplnkom. Nielen na okrasu, či ako svedectvo našej histórie. Leptaný vzor na valaške či sekere, alebo noži môže charakterizovať nás samotných, vyjadrovať čo je v našom živote pre nás dôležité, alebo pripomínať naše korene.
+
+                Všetky valašky či ďalšie chladné zbrane sú vykované v kováčskych dielňach spoločnosti Drakkaria, ktorá je predným českým výrobcom chladných zbraní a mnoho iných krásnych výrobkov...
+
+                <strong>Ján Backa</strong>
+            </p>
+        </div>
+        <div class="prices">
+            <h2>Cenník</h2>
+            <button class="toggle-button" onclick="togglePrices()">▼</button>
+            <div class="price-details" id="priceDetails">
+                <p>
+                    Všetky naše valašky sú vyrobené z kovanej a kalenej ocele. Materiál C45 (12050). Sekerka je kovaná z jedného kusu. Valašky kujú majstri kováči zo spoločnosti Drakkaria.
+
+                    Drakkaria je predným výrobcom chladných zbraní, nielen valašiek, ale aj mečov, nožov, bojových sekier, historických replík a mnoho iného.
+
+                    Cena obojstranne leptanej valašky s poriskom, kovanou, leptanou špičkou začína na 250tich eurách. Záleží na zložitosti leptania. V prípade leptania osoby, alebo zložitej grafiky, doplnkov na zdobenie, cena môže dosiahnuť približne 350 €.
+
+                    Všetko záleží na dohode. Cena zahŕňa nielen materiál a prácu, ale aj spracovanie grafického návrhu a takisto poštovné v rámci Slovenska.
+                </p>
+            </div>
+        </div>
+
+        <div class="form">
+            <h2>Kontaktný formulár</h2>
+            <button class="toggle-button-form" onclick="toggleForm()">▼</button>
+            <div class="form-details" id="formDetails">
+                <form id="contactForm">
+                    <label for="name">Meno:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Správa:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button type="submit">Odoslať</button>
+                    <p id="formStatus"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="goldlinehor"></div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div id="footer-container"></div>
+        </div>
+    </section>
+</body>
+<script src="../js/backend/sendEmail.js"></script>
+<script src="../js/frontend/loadHeader.js"></script>
+<script src="../js/frontend/loadFooter.js"></script>
+<script src="../js/frontend/menu.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        await loadHeader();
+        await loadFooter();
+        setupMenuToggle();
+    });
+
+    function togglePrices() {
+        const details = document.getElementById("priceDetails");
+        const button = document.querySelector(".toggle-button");
+
+        if (details.style.display === "block") {
+            details.style.display = "none";
+            button.classList.remove("rotate");
+            button.innerHTML = "▼";
+        } else {
+            details.style.display = "block";
+            button.classList.add("rotate");
+            button.innerHTML = "▲";
+        }
+    }
+
+    function toggleForm() {
+        const details = document.getElementById("formDetails");
+        const button = document.querySelector(".toggle-button-form");
+
+        if (details.style.display === "block") {
+            details.style.display = "none";
+            button.classList.remove("rotate");
+            button.innerHTML = "▼";
+        } else {
+            details.style.display = "block";
+            button.classList.add("rotate");
+            button.innerHTML = "▲";
+        }
+    }
+
+    document.getElementById("contactForm").addEventListener("submit", sendMail);
+
+</script>
+</html>

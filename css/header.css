@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.menu {
+    background-color: rgb(34, 34, 34);
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.navMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    position: relative;
+}
+
+.logo img {
+    height: 70px;
+}
+
+.menu-toggle {
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sideMenu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100vh;
+    background-color: rgb(49, 49, 49);
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.5s ease;
+    z-index: 1001;
+}
+
+.sideMenu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding-bottom: 8px;              
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+}
+
+.sideMenu a span {
+    margin: 0 0 0 8px; 
+    font-size: 22px;    
+    line-height: 1;
+    filter: brightness(0) invert(1);
+}
+
+.sideMenu a:hover {
+    color: rgb(192, 189, 189);
+}
+
+.sideMenu.active {
+    right: 0;
+}
+
+.close-btn {
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-bottom: 30px;
+    user-select: none;
+}
+
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.title {
+    max-height: 60px;
+    width: auto;
+}
+
+@media (max-width: 1200px) {
+    .title {
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        max-height: 28px;
+    }
+}
