@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://svrcinovske-valasky.sk/sitemap.xml
