@@ -111,4 +111,14 @@ body {
     .title {
         max-height: 28px;
     }
+    .logo img {
+        height: 45px;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .title {
+        max-height: 20px;
+    }
 }
